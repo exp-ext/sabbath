@@ -11,8 +11,4 @@ class CreationForm(UserCreationForm):
             'username',
             'email',
             'phone_number',
-            'bio',
-            'location',
-            'birth_date',
-            'avatar'
         )

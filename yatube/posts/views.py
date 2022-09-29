@@ -1,9 +1,12 @@
 from core.views import paginator_handler
+from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 
 from .forms import CommentForm, PostForm
-from .models import Follow, Group, Post, User
+from .models import Follow, Group, Post
+
+User = get_user_model()
 
 
 def search(request):
