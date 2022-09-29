@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Об авторе проекта{% endblock %}
+
+{% block content %}
+  <h1>Привет, я автор</h1>
+  <p>
+    мои проекты вы можете посмотреть на <a href="https://github.com/exp-ext">GitHub</a><br><br>
+
+    Там же я когда-нибудь размещу информацию о себе.<br><br>
+    
+    Связаться со мной можно через <a href="https://t.me/Borokin" target="_blank"><img src="https://img.shields.io/badge/My%20Telegram-Join-blue"></a>.
+    <br><br>
+    А пока картинки о собачкав:<br>
+
+    {% include 'about/includes/dogs.html' %}
+
+  </p>
+{% endblock %} 

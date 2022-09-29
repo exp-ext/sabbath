@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load cache %}
+{% load static %}
+
+{% block title %} Поиск {% endblock %}
+
+{% block header %}    
+  <h1>Последние обновления на дату {{ date_today }}</h1>
+{% endblock %}
+     
+{% block content %}
+
+  {% include 'posts/includes/switcher.html' %}
+  {% include 'posts/includes/search.html' %}
+  
+  {% cache 20 index_page %}
+
+    <div class="container">
+      {% for post in page_obj %}      
+        {% include 'posts/includes/post_list.html' %}        
+      {% endfor %}
+    </div>   
+
+  {% endcache %}
+
+  {% include 'posts/includes/paginator.html' %}
+
+{% endblock %}
