@@ -7,10 +7,16 @@ class PostURLTests(TestCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.user = User.objects.create_user(username='auth',
-                                            password='12345')
-        cls.somebody = User.objects.create_user(username='user',
-                                                password='54321')
+        cls.user = User.objects.create_user(
+            username='auth',
+            password='1234GLKLl5',
+            phone_number='+799988776644'
+        )
+        cls.somebody = User.objects.create_user(
+            username='user',
+            password='54321',
+            phone_number='+799988776655'
+        )
         cls.post = Post.objects.create(
             author=cls.user,
             text='Тестовый пост' * 3

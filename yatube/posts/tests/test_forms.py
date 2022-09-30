@@ -25,10 +25,16 @@ class PostFormTests(TestCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.user_author = User.objects.create_user(username='auth',
-                                                   password='1234GLKLl5')
-        cls.user_action = User.objects.create_user(username='comment_auth',
-                                                   password='123TKLDKlk45')
+        cls.user_author = User.objects.create_user(
+            username='auth',
+            password='1234GLKLl5',
+            phone_number='+799988776611'
+        )
+        cls.user_action = User.objects.create_user(
+            username='comment_auth',
+            password='123TKLDKlk45',
+            phone_number='+799988776622'
+        )
         cls.group = Group.objects.create(
             title='Тестовая группа',
             slug='test-slug',

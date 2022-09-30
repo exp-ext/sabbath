@@ -16,7 +16,7 @@
   {% cache 20 index_page %}
 
     <div class="container">
-      {% for post in page_obj %}      
+      {% for post in page_obj %}  
         {% include 'posts/includes/post_list.html' %}        
       {% endfor %}
     </div>   

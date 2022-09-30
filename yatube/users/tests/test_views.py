@@ -10,8 +10,11 @@ class UsersViewsTests(TestCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.user = User.objects.create_user(username='auth',
-                                            password="12345")
+        cls.user = User.objects.create_user(
+            username='auth',
+            password="12345",
+            phone_number='+722988776655'
+        )
         cls.password_change_form = reverse('users:password_change_form')
         cls.logout = reverse('users:logout')
         cls.login = reverse('users:login')

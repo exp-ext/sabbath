@@ -1,10 +1,12 @@
 from core.models import CreatedModel
-from django.conf import settings
+from django.contrib.auth import get_user_model
 from django.db import models
-
 from pytils.translit import slugify
+from sorl.thumbnail import ImageField
 
-User = settings.AUTH_USER_MODEL
+# from upload.models import Photo
+
+User = get_user_model()
 
 
 class Group(models.Model):
@@ -48,11 +50,18 @@ class Post(CreatedModel):
         verbose_name='Группа',
         help_text='Группа, к которой будет относиться пост'
     )
-    image = models.ImageField(
+    image = ImageField(
         verbose_name='Картинка',
         upload_to='posts/',
         blank=True
     )
+    # image = models.ForeignKey(
+    #     Photo,
+    #     on_delete=models.SET_NULL,
+    #     related_name='photo',
+    #     verbose_name='Фотография',
+    #     help_text='Фотография к посту'
+    # )
 
     class Meta:
         ordering = ('-pub_date',)

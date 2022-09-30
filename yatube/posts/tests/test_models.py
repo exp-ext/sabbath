@@ -28,7 +28,11 @@ class PostModelTest(TestCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.user = User.objects.create_user(username='auth')
+        cls.user = User.objects.create_user(
+            username='auth',
+            password='1234GLKLl5',
+            phone_number='+799988776633'
+        )
         cls.post = Post.objects.create(
             author=cls.user,
             text='Тестовый пост. ' * 3

@@ -1,12 +1,11 @@
 {% extends "base.html" %}
 {% load static %}
 {% load user_filters %}
+{% load thumbnail %}
 
 {% block title %} Редактор постов {% endblock %}
 
 {% block content %} 
-
-  <script src="{% static 'js/bootstrap.min.js' %}"></script> 
 
   <div class="row justify-content-center">
     <div class="col-md-8 p-5"> 
@@ -54,14 +53,22 @@
                   <small id="{{ field.text.id_for_label }}-help" class="form-text text-muted"> 
                     {{ field.help_text|safe }}
                   </small>
+                  {% endif %}                 
+
+                  {% if field.name == "image"%}
+
+                    {% thumbnail field "400x100" crop="center" as im %}
+                      <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+                    {% endthumbnail %}
+
                   {% endif %}
+                  
+                  <div class="form-error">{{ field.errors }}</div>             
 
-                  <div class="form-error">{{ field.errors }}</div>
-
-                </label> 
+                </label>
 
               </div>
-            {% endfor %}
+            {% endfor %}            
 
             <div class="d-flex justify-content-end">              
               <button type="submit" class="btn btn-primary">

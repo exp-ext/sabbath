@@ -9,8 +9,11 @@ class UsersURLTests(TestCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.user = User.objects.create_user(username='auth',
-                                            password="12345")
+        cls.user = User.objects.create_user(
+            username='auth',
+            password="12345",
+            phone_number='+711988776655'
+        )
 
     def setUp(self):
         self.guest_client = Client()

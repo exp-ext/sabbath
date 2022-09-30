@@ -2,7 +2,6 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from phonenumber_field.modelfields import PhoneNumberField
 from django.core.validators import RegexValidator
-from upload.models import Photo
 
 
 class User(AbstractUser):
@@ -34,10 +33,9 @@ class User(AbstractUser):
         verbose_name='Дата рождения',
         help_text='Если хотите подарок на ДР'
     )
-    avatar = models.ForeignKey(
-        Photo,
+    avatar = models.ImageField(
+        verbose_name='Аватар',
+        upload_to='avatar/',
         null=True,
-        blank=True,
-        on_delete=models.CASCADE,
-        related_name='photo'
+        blank=True
     )
