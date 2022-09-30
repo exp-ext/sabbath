@@ -57,9 +57,9 @@
 
                   {% if field.name == "image"%}
 
-                    {% thumbnail field "400x100" crop="center" as im %}
-                      <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
-                    {% endthumbnail %}
+                    {% thumbnail field.initial.url "600x200" crop="center" upscale=True as im %}
+                      <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}>
+                    {% endthumbnail %} 
 
                   {% endif %}
                   

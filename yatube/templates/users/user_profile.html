@@ -14,9 +14,10 @@
                 <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}>
             {% endthumbnail %} 
         {% else %}
-            {% comment %} <img src="{% static 'yatube/media/2.jpg' %}" height=100 width=100><br><br> {% endcomment %}
+            <img src="{{ MEDIA_URL }}/NLO.png"/>
         {% endif %}
 
+        
         <form method="post"
         enctype="multipart/form-data"
         action="{% url 'users:user_profile' user.username %}">
