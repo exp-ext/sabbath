@@ -10,15 +10,16 @@
     <div class="card-body">
 
         {% if user.avatar %}
-            {% thumbnail user.avatar "100x100" crop="center" upscale=True as im %}
-                <img class="card-img my-2" src="{{ im.url }}">
-            {% endthumbnail %}
-            <img src="{{ user.avatar.url }}" height=100 width=100><br><br>
+            {% thumbnail user.avatar "200x200" crop="center" upscale=True as im %}
+                <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}>
+            {% endthumbnail %} 
         {% else %}
             {% comment %} <img src="{% static 'yatube/media/2.jpg' %}" height=100 width=100><br><br> {% endcomment %}
         {% endif %}
 
-        <form method="post" action="{% url 'users:user_profile' user.username %}">
+        <form method="post"
+        enctype="multipart/form-data"
+        action="{% url 'users:user_profile' user.username %}">
             
             {% csrf_token %}
 
