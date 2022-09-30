@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load thumbnail %}
+{% load user_filters %}
+{% block content %}
+
+    <div class="header-bar">
+        <a href="{% url 'posts:profile' user.username %}"> К моим постам</a>    
+    </div>
+
+    <div class="card-body">
+
+        {% if user.avatar %}
+            {% thumbnail user.avatar "100x100" crop="center" upscale=True as im %}
+                <img class="card-img my-2" src="{{ im.url }}">
+            {% endthumbnail %}
+            <img src="{{ user.avatar.url }}" height=100 width=100><br><br>
+        {% else %}
+            {% comment %} <img src="{% static 'yatube/media/2.jpg' %}" height=100 width=100><br><br> {% endcomment %}
+        {% endif %}
+
+        <form method="post" action="{% url 'users:user_profile' user.username %}">
+            
+            {% csrf_token %}
+
+            {% for field in form %}
+            <div class="form-group row my-3 p-3">
+
+                <label for="{{ field.text.id_for_label }}">                  
+                  {{ field.label }}
+                  {% if field.field.required %}
+                    <span class="reqired text-danger">*</span>
+                  {% endif %}
+
+                  <div class="col-md-9"> 
+                    {{ field|addclass:"form-control" }}
+                  </div> 
+
+                  {% if field.help_text %}
+                  <small id="{{ field.text.id_for_label }}-help" class="form-text text-muted"> 
+                    {{ field.help_text|safe }}
+                  </small>
+                  {% endif %}                 
+
+                  {% if field.name == "image"%}
+
+                    {% thumbnail field "100x100" crop="center" as im %}
+                      <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+                    {% endthumbnail %}
+
+                  {% endif %}
+                  
+                  <div class="form-error">{{ field.errors }}</div>             
+
+                </label>
+
+              </div>
+            {% endfor %}
+
+            <div class="col-md-6 offset-md-4">
+                <button type="submit" class="btn btn-primary">
+                  Сохранить данные
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+
+{% endblock content %}
+

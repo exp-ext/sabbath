@@ -66,4 +66,9 @@ urlpatterns = [
         ),
         name='password_reset_complete'
     ),
+    path(
+        'user/<str:username>/',
+        views.user_profile,
+        name='user_profile'
+    ),
 ]
