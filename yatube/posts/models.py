@@ -2,7 +2,6 @@ from core.models import CreatedModel
 from django.contrib.auth import get_user_model
 from django.db import models
 from pytils.translit import slugify
-from sorl.thumbnail import ImageField
 
 # from upload.models import Photo
 
@@ -50,7 +49,7 @@ class Post(CreatedModel):
         verbose_name='Группа',
         help_text='Группа, к которой будет относиться пост'
     )
-    image = ImageField(
+    image = models.ImageField(
         verbose_name='Картинка',
         upload_to='posts/',
         blank=True

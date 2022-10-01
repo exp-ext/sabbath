@@ -9,8 +9,8 @@ class User(AbstractUser):
         regex=r"^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$"
     )
     phone_number = PhoneNumberField(
-        blank=False,
-        null=False,
+        blank=True,
+        null=True,
         unique=True,
         verbose_name='Номер телефона',
         help_text='Введите свой номер телефона'
@@ -36,6 +36,7 @@ class User(AbstractUser):
     avatar = models.ImageField(
         verbose_name='Аватар',
         upload_to='avatar/',
+        default='avatar/NLO.png',
         null=True,
         blank=True
     )

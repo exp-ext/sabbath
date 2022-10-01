@@ -4,28 +4,19 @@
 {% block content %}
 
     <div class="header-bar">
-        <a href="{% url 'posts:profile' user.username %}"> К моим постам</a>    
+      <a href="{% url 'posts:profile' user.username %}"> К моим постам</a>    
     </div>
 
     <div class="card-body">
-
-        {% if user.avatar %}
-            {% thumbnail user.avatar "200x200" crop="center" upscale=True as im %}
-                <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}>
-            {% endthumbnail %} 
-        {% else %}
-            <img src="{{ MEDIA_URL }}/NLO.png"/>
-        {% endif %}
-
-        
-        <form method="post"
-        enctype="multipart/form-data"
-        action="{% url 'users:user_profile' user.username %}">
-            
+      
+          <form method="post"
+          enctype="multipart/form-data"
+          action="{% url 'users:user_profile' user.username %}">
+              
             {% csrf_token %}
 
             {% for field in form %}
-            <div class="form-group row my-3 p-3">
+              <div class="form-group row my-3 p-3">
 
                 <label for="{{ field.text.id_for_label }}">                  
                   {{ field.label }}
@@ -33,25 +24,30 @@
                     <span class="reqired text-danger">*</span>
                   {% endif %}
 
-                  <div class="col-md-9"> 
-                    {{ field|addclass:"form-control" }}
-                  </div> 
+                  {% if field.name == 'avatar' %}
+                    <div class="row"> 
+                      <div class="col-md-2">
+                        {% thumbnail user.avatar "200x200" crop="center" upscale=True as im %}
+                          <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+                        {% endthumbnail %} 
+                      </div>
+                      <div class="col-md-7">
+                        {{ field|addclass:"form-control" }}
+                      </div>
+                    </div>
+                  {% else %}
+                    <div class="col-md-9">                                   
+                      {{ field|addclass:"form-control" }}
+                    </div>
+                  {% endif %}                 
 
                   {% if field.help_text %}
                   <small id="{{ field.text.id_for_label }}-help" class="form-text text-muted"> 
                     {{ field.help_text|safe }}
                   </small>
-                  {% endif %}                 
-
-                  {% if field.name == "image"%}
-
-                    {% thumbnail field "100x100" crop="center" as im %}
-                      <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
-                    {% endthumbnail %}
-
-                  {% endif %}
+                  {% endif %} 
                   
-                  <div class="form-error">{{ field.errors }}</div>             
+                  <div class="form-error">{{ field.errors }}</div>                   
 
                 </label>
 
@@ -59,12 +55,13 @@
             {% endfor %}
 
             <div class="col-md-6 offset-md-4">
-                <button type="submit" class="btn btn-primary">
-                  Сохранить данные
-                </button>
+              <button type="submit" class="btn btn-primary">
+                Сохранить данные
+              </button>
             </div>
 
-        </form>
+          </form>
+
 
     </div>
 
