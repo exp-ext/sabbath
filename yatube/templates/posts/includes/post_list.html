@@ -7,6 +7,7 @@
 
 <div class="hover-effects">
     <article>
+
     <ul>
       {% if author != post.author %}
         <li>          
@@ -16,8 +17,9 @@
         <li>
           Дата публикации: {{ post.pub_date|date:"d E Y" }}
         </li>
-      {% if author != post.author %}
-        <a class="button fast white" href="{% url 'posts:profile' post.author %}">все_посты_пользователя</a>
+      {% if author != post.author %}      
+        <a class="button fast white" href="{% url 'posts:profile' post.author %}">все &#160 посты &#160 пользователя</a>
+
       {% endif %}
     </ul>
     
@@ -27,10 +29,10 @@
 
     <p>{{ post.text }}</p>
     
-    <a class="button fast white" href="{% url 'posts:post_detail' post.pk %}">подробная_информация </a>
+    <a class="button fast white" href="{% url 'posts:post_detail' post.pk %}">подробная &#160 информация </a>
 
     {% if post.group and group != post.group %}
-      <a class="button fast white" href="{% url 'posts:group_list' post.group.slug %}">все_записи_группы</a>
+      <a class="button fast white" href="{% url 'posts:group_list' post.group.slug %}">все &#160 записи &#160 группы</a>
     {% endif %} 
 
     {% if not forloop.last %}<hr>{% endif %}

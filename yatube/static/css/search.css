@@ -3,10 +3,6 @@
     src: url('../fonts/Legendaria.ttf') format("truetype");
 }
 
-li {
-    margin-bottom: 18px;
-}
-
 .search-font {    
     font-family: Legendaria, regular;
     font-size: 30px;
