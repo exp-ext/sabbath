@@ -14,7 +14,7 @@
         </li>
       {% endif %} 
         <li>
-          Дата публикации: {{ post.pub_date|date:"d E Y" }}        
+          Дата публикации: {{ post.pub_date|date:"d E Y" }}
         </li>
       {% if author != post.author %}
         <a class="button fast white" href="{% url 'posts:profile' post.author %}">все_посты_пользователя</a>

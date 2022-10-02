@@ -12,3 +12,7 @@ pytils==0.4.1
 django-debug-toolbar==3.2.4
 django-phonenumber-field[phonenumbers]
 ipython
+flake8
+flake8-broken-line
+flake8-return
+flake8-isort

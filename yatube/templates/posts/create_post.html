@@ -44,31 +44,26 @@
                   {% if field.field.required %}
                     <span class="reqired text-danger">*</span>
                   {% endif %}
+                  
 
-                  {% if field.name == 'image' %}
-                    <div class="row"> 
-                      <div class="col-md-2">
-                        {% thumbnail field "600x200" crop="center" upscale=True as im %}
-                          <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
-                        {% endthumbnail %} 
-                      </div>
-                      <div class="col-md-7">
-                        {{ field|addclass:"form-control" }}
-                      </div>
-                    </div>
-                  {% else %}
-                    <div class="col-md-12">                                   
-                      {{ field|addclass:"form-control" }}
-                    </div>
-                  {% endif %} 
+                  {{ field|addclass:"form-control" }}
+
 
                   {% if field.help_text %}
                     <small id="{{ field.text.id_for_label }}-help" class="form-text text-muted"> 
                       {{ field.help_text|safe }}
                     </small>
+                  {% endif %}                 
+
+                  <div class="form-error">{{ field.errors }}</div>  
+                  
+                  {% if field.name == 'image' %}
+                    <div class="form-group row my-3 p-3">
+                      {% thumbnail field.initial "x400" as im %}
+                        <img src="{{ im.url }}">
+                      {% endthumbnail %} 
+                    </div>  
                   {% endif %}
-                 
-                  <div class="form-error">{{ field.errors }}</div>             
 
                 </label>
 
