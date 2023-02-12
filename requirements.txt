@@ -10,6 +10,7 @@ sorl-thumbnail==12.7.0
 Faker==12.0.1
 pytils==0.4.1
 django-debug-toolbar==3.2.4
+python-dotenv==0.21.1
 django-phonenumber-field[phonenumbers]
 ipython
 flake8

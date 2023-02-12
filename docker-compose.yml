@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: db
+    restart: unless-stopped
+    volumes:
+      - postgresql_volume:/var/lib/postgresql/data/
+    env_file:
+      - ./.env
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - DJANGO_SECRET_KEY
+    container_name: yatube_django
+    restart: always
+    command: .cgi-bin/web_entrypoint.sh
+    volumes:
+      - static_volume:/app/web/static
+      - /app/web/media:/app/web/media
+    expose:
+      - 8000
+    env_file:
+      - ./.env
+    depends_on:
+      - db
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx/:/etc/nginx/conf.d/:ro
+      - ./certbot/www:/var/www/certbot/:ro
+      - ./certbot/conf/:/etc/nginx/ssl/:ro
+      - static_volume:/app/web/static
+      - /app/web/media:/app/web/media 
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - web
+
+  certbot:
+    image: certbot/cerbot:latest
+    volumes:
+      - ./certbot/www/:/var/www/certbot/:rw
+      - ./certbot/conf/:/etc/letsencrypt/:rw
+
+volumes:
+  static_volume:
+  postgresql_volume:
