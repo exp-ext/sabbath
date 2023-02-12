@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}Зарегистрироваться{% endblock %}
 
@@ -37,13 +38,13 @@
                   {% if field.field.required %}
                     <span class="required text-danger">*</span>
                   {% endif %}
-                </label>    
-                {{ field|addclass:'form-control' }}
+                </label>
+                  {{ field|addclass:'form-control' }}
                 {% if field.help_text %}
                   <small id="{{ field.id_for_label }}-help" class="form-text text-muted">
                     {{ field.help_text|safe }}
                   </small>
-                {% endif %}
+                {% endif %}                
               </div>
               {% endfor %}
 
@@ -57,5 +58,10 @@
       </div> <!-- card -->
     </div> <!-- col -->
   </div> <!-- row -->
-  
 {% endblock %} 
+
+{% block javascript %}
+  <script  src="{% static 'js/check-phone.js' %}"></script>
+{% endblock %}
+
+

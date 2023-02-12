@@ -44,6 +44,11 @@
     font-family: 'Lobster';
 }
 
+.lobster h2 {
+  color: #0a0a0a;
+  font-family: 'Lobster';
+}
+
 .lobster p {
     color: #070420;
     font-weight: 600;

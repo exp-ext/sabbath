@@ -19,7 +19,7 @@ class User(AbstractUser):
         max_length=500,
         blank=True,
         verbose_name='Немножко о себе',
-        help_text='Личные интересы, цели, предпотения'
+        help_text='Личные интересы, цели, предпочтения'
     )
     location = models.CharField(
         max_length=30,

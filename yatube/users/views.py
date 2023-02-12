@@ -30,7 +30,7 @@ def user_profile(request, username):
 
     if request.method == "POST" and form.is_valid():
         user = form.save()
-        return redirect('posts:profile', username=username)
+        return redirect('users:user_profile', username=username)
 
     context = {
         'user': user,

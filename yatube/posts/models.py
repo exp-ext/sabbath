@@ -3,8 +3,6 @@ from django.contrib.auth import get_user_model
 from django.db import models
 from pytils.translit import slugify
 
-# from upload.models import Photo
-
 User = get_user_model()
 
 
@@ -30,6 +28,13 @@ class Group(models.Model):
 
 
 class Post(CreatedModel):
+    title = models.CharField(
+        max_length=100,
+        blank=False,
+        null=False,
+        verbose_name='Заголовок поста',
+        help_text='максимально 100 символов'
+    )
     text = models.TextField(
         verbose_name='Текст поста',
         help_text='Введите текст поста'
@@ -54,13 +59,6 @@ class Post(CreatedModel):
         upload_to='posts/',
         blank=True
     )
-    # image = models.ForeignKey(
-    #     Photo,
-    #     on_delete=models.SET_NULL,
-    #     related_name='photo',
-    #     verbose_name='Фотография',
-    #     help_text='Фотография к посту'
-    # )
 
     class Meta:
         ordering = ('-pub_date',)
@@ -68,7 +66,7 @@ class Post(CreatedModel):
         verbose_name_plural = 'Посты'
 
     def __str__(self) -> str:
-        return self.text[:15]
+        return self.title[:20]
 
 
 class Comment(CreatedModel):

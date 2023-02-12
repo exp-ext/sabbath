@@ -84,6 +84,7 @@ class PostFormTests(TestCase):
     def test_post_create_forms(self):
         """Валидная форма создает запись в Posts."""
         posts_count = Post.objects.count()
+        posts_first = set(Post.objects.all())
         form_data = {
             'text': 'Тестовый пост 1',
             'group': self.group.id,
@@ -95,6 +96,11 @@ class PostFormTests(TestCase):
             follow=True
         )
         self.assertRedirects(response, self.profile)
+
+        posts_second = set(Post.objects.all())
+        post = posts_second.difference(posts_first)
+        post = list(post).pop()
+
         self.assertTrue(
             Post.objects.filter(
                 text='Тестовый пост 1',).exists()

@@ -58,15 +58,16 @@
                   <div class="form-error">{{ field.errors }}</div>  
                   
                   {% if field.name == 'image' %}
-                    <div class="form-group row my-3 p-3">
-                      {% thumbnail field.initial "x400" as im %}
-                        <img src="{{ im.url }}">
-                      {% endthumbnail %} 
-                    </div>  
+
+                      <div class="form-group row my-3 p-3">
+                        {% thumbnail field.initial "x400" as im %}
+                          <img src="{{ im.url }}">
+                        {% endthumbnail %} 
+                      </div>                       
+
                   {% endif %}
 
                 </label>
-
               </div>
             {% endfor %}            
 
@@ -79,9 +80,11 @@
                 {% endif %}
               </button>
             </div>
+
           </div>
         </form>
       </div>
     </div>
   </div>
+
 {% endblock %}

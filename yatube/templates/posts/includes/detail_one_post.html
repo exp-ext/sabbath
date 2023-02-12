@@ -1,50 +1,51 @@
 {% load thumbnail %}
+{% load static %}
 
-<div class="row">
+{% block style %}  
+  <link rel="stylesheet" href="{% static 'css/hover-effects.css' %}">
+{% endblock %}
+
+
+<div class="row">  
     <aside class="col-12 col-md-3">
+      <div class="hover-effects">
       <ul class="list-group list-group-flush">
         <li class="list-group-item">
           Дата публикации: {{ post.pub_date|date:"d E Y" }}
-        </li>
+        </li>        
         {% if post.group %}
             <li class="list-group-item">
             Группа: {{ post.group }}
-            <a href="{% url 'posts:group_list' post.group.slug %}">
-              <button type="submit" class="btn btn btn-info btn-sm">
-                все записи группы
-              </button>
-            </a>
+              <a class="button fast white" href="{% url 'posts:group_list' post.group.slug%}">
+                все &#160 записи &#160 группы
+              </a>
             </li>
         {% endif %} 
         <li class="list-group-item">
           Автор: {{ post.author.get_full_name }}
         </li>
-        <li class="list-group-item d-flex justify-content-between align-items-center">
+        <li class="list-group-item justify-content-between align-items-center">
           Всего постов автора:  <span > {{ authors_posts_count }} </span>
+          <a class="button fast white" href="{% url 'posts:profile' post.author %}">
+            все &#160 посты &#160 пользователя            
+          </a>
         </li>
         <li class="list-group-item">
-          <a href="{% url 'posts:profile' post.author %}">
-            <button type="submit" class="btn btn btn-info btn-sm">
-              все посты пользователя
-            </button>
-          </a>       
-        </li>
-        <li class="list-group-item">
-          {% if post.author == user %}
-            <a href="{% url 'posts:post_edit' post.pk %}">
-              <button type="submit" class="btn btn-primary">
-                изменить пост
-              </button>
-            </a>
-          
-            <a href="{% url 'posts:post_delete' post.pk %}">
-              <button type="submit" class="btn btn-primary">
-                удалить пост
-              </button>
-            </a>
+          {% if post.author == user %}  
+          <li class="list-group-item">      
+            <a class="button" href="{% url 'posts:post_edit' post.pk  %}">
+              изменить &#160 пост
+            </a> 
+          </li>
+          <li class="list-group-item">
+            <a class="button reverse dark" href="{% url 'posts:post_delete' post.pk %}">
+              удалить&#160пост
+            </a> 
+          </li>
           {% endif %}
         </li>
       </ul>
+    </div> 
     </aside>
 
     <article class="col-12 col-md-9">
@@ -52,8 +53,18 @@
         <img class="card-img my-2" src="{{ im.url }}">
       {% endthumbnail %}
       <p>
-       {{ post.text }} 
+       {{ post.text|safe }} 
       </p>
-    </article>
+      {% include 'posts/includes/comments.html' %}
+    </article>   
+</div>
 
-</div> 
+<a class="dribbble"
+href="https://dribbble.com/shots/7441241-Button-Hover-Effects"
+  target="_blank">
+<img src="https://cdn.dribbble.com/assets/dribbble-ball-mark-2bd45f09c2fb58dbbfb44766d5d1d07c5a12972d602ef8b32204d28fa3dda554.svg"
+  alt=""></a>
+
+{% block javascript %}
+  <script  src="{% static 'js/script.js' %}"></script>
+{% endblock %}

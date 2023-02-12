@@ -240,6 +240,15 @@ class PostViewsTests(TestCase):
     def test_following_unfolowing(self):
         """Авторизованный пользователь может подписатся/отписатся
         на авторов."""
+        # подписка на самого себя
+        follow_count = Follow.objects.count()
+        self.authorized_client.get(self.profile_follow)
+
+        self.assertEqual(
+            Follow.objects.count(),
+            follow_count,
+            'кол-во записей не равно, подписка на самого себя возможна'
+        )
         # подписка на автора
         self.followers_authorized_client.get(self.profile_follow)
         self.assertTrue(
