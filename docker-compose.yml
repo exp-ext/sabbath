@@ -18,7 +18,7 @@ services:
         - DJANGO_SECRET_KEY
     container_name: yatube_django
     restart: always
-    command: .cgi-bin/web_entrypoint.sh
+    command: ./web_entrypoint.sh
     volumes:
       - static_volume:/app/web/static
       - /app/web/media:/app/web/media
@@ -33,8 +33,8 @@ services:
     image: nginx:latest
     volumes:
       - ./nginx/:/etc/nginx/conf.d/:ro
-      - ./certbot/www:/var/www/certbot/:ro
-      - ./certbot/conf/:/etc/nginx/ssl/:ro
+      - ./certbot/www:/var/www/certbot/
+      - ./certbot/conf/:/etc/letsencrypt/
       - static_volume:/app/web/static
       - /app/web/media:/app/web/media 
     ports:
@@ -44,10 +44,10 @@ services:
       - web
 
   certbot:
-    image: certbot/cerbot:latest
+    image: certbot/certbot:latest
     volumes:
-      - ./certbot/www/:/var/www/certbot/:rw
-      - ./certbot/conf/:/etc/letsencrypt/:rw
+      - ./certbot/www/:/var/www/certbot/
+      - ./certbot/conf/:/etc/letsencrypt/
 
 volumes:
   static_volume:

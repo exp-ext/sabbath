@@ -41,4 +41,4 @@ COPY . $APP_HOME
 
 RUN chmod +x $APP_HOME/web_entrypoint.sh
 
-RUN python todo/manage.py collectstatic --no-input
+RUN python yatube/manage.py collectstatic --no-input

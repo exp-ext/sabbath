@@ -17,3 +17,6 @@ flake8
 flake8-broken-line
 flake8-return
 flake8-isort
+
+gunicorn
+whitenoise
