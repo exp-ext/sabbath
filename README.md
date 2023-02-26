@@ -31,7 +31,6 @@
 
 <p><code>$ docker-compose up --build</code></p>
 
-<p>В общем то и всё. Остальное все сделается автоматически.</p>
 
 ## License
 [MIT © Andrey Borokin](https://github.com/exp-ext/yatube/blob/main/LICENSE.txt)
