@@ -181,6 +181,7 @@ if DEBUG:
 
 CSRF_FAILURE_VIEW = 'core.views.csrf_failure'
 
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 CACHES = {
     'default': {

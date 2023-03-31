@@ -38,12 +38,12 @@
 <li>Установите на сервере docker и docker-compose-plugin;</li>
 <li>Клонируйте на локальный компьютер репозиторий;</li>
 <li>Создайте файл /infra/.env. Шаблон для заполнения файла находится в /infra/.env.example;</li>
-<li>В файле ./infra/nginx/default.conf.template закомментируйте строки 14:18 для получения сертификата.</li>
+<li>В файле ./infra/nginx/default.conf.template закомментируйте строки 12:16 для получения сертификата.</li>
 <li>Скопируйте папку infra со всем содержимым на сервер `scp -r ~/yatube/infra name@IP.ad.re.ss:~/`
 </li>
 <li>На сервере, перейдите в папку infra/ и получите сертификаты в Let's Encrypt запустив скрипт `sudo ./init-letsencrypt.sh`</li>
 <li>Остановите сервер `docker compose down` </li>
-<li>Раскомментируйте строки 14:18 в файле ./infra/nginx/default.conf.template</li>
+<li>Раскомментируйте строки 12:16 в файле ./infra/nginx/default.conf и впишите имя своего домена вместо `grandmasrecipes.fun`</li>
 <li>В папке infra выполните команду `docker compose up -d --build`;</li>
 <li>Создайте суперюзера `docker compose exec web python manage.py createsuperuser`</li>
 <br /><br />
