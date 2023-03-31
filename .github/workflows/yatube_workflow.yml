@@ -83,8 +83,8 @@ jobs:
             echo SERVER_NAME=${{ secrets.SERVER_NAME }} >> .env
             echo DOMAIN_NAME=${{ secrets.DOMAIN_NAME }} >> .env            
             sudo docker compose up -d --build
-            sudo docker compose exec backend python manage.py collectstatic --noinput
-            sudo docker compose exec backend python manage.py migrate --noinput
+            sudo docker compose exec web python manage.py collectstatic --noinput
+            sudo docker compose exec web python manage.py migrate --noinput
 
   send_message:
     runs-on: ubuntu-latest

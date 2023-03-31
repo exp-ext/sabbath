@@ -12,5 +12,8 @@ pytils==0.4.1
 django-debug-toolbar==3.2.4
 python-dotenv==0.21.1
 django-phonenumber-field[phonenumbers]
+
+# Django productions
 gunicorn~=20.1.0
 whitenoise~=6.4.0
+psycopg2-binary~=2.9.5
