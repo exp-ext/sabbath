@@ -38,8 +38,8 @@
 <li>Установите на сервере docker и docker-compose-plugin;</li>
 <li>Клонируйте на локальный компьютер репозиторий;</li>
 <li>Создайте файл /infra/.env. Шаблон для заполнения файла находится в /infra/.env.example;</li>
-<li>В файле ./infra/nginx/default.conf закомментируйте строки 14:18 для получения сертификата.</li>
-<li>Скопируйте папку infra со всем содержимым на сервер `scp -r ~/foodgram-project-react/infra name@IP.ad.re.ss:~/`
+<li>В файле ./infra/nginx/default.conf.template закомментируйте строки 14:18 для получения сертификата.</li>
+<li>Скопируйте папку infra со всем содержимым на сервер `scp -r ~/yatube/infra name@IP.ad.re.ss:~/`
 </li>
 <li>На сервере, перейдите в папку infra/ и получите сертификаты в Let's Encrypt запустив скрипт `sudo ./init-letsencrypt.sh`</li>
 <li>Остановите сервер `docker compose down` </li>
