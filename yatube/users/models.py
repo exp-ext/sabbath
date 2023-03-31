@@ -5,7 +5,7 @@ from phonenumber_field.modelfields import PhoneNumberField
 
 
 class User(AbstractUser):
-    phoneNumberRegex = RegexValidator(
+    phone_number_regex = RegexValidator(
         regex=r"^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$"
     )
     phone_number = PhoneNumberField(
