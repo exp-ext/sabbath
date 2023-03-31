@@ -26,14 +26,14 @@ class PostFormTests(TestCase):
     def setUpClass(cls):
         super().setUpClass()
         cls.user_author = User.objects.create_user(
-            username='auth',
+            username='author_auth',
             password='1234GLKLl5',
-            phone_number='+799988776611'
+            phone_number='+792288776611'
         )
         cls.user_action = User.objects.create_user(
             username='comment_auth',
             password='123TKLDKlk45',
-            phone_number='+799988776622'
+            phone_number='+792288776622'
         )
         cls.group = Group.objects.create(
             title='Тестовая группа',
@@ -86,7 +86,8 @@ class PostFormTests(TestCase):
         posts_count = Post.objects.count()
         posts_first = set(Post.objects.all())
         form_data = {
-            'text': 'Тестовый пост 1',
+            'title': 'Заголовок',
+            'text': 'Тестовый пост 2',
             'group': self.group.id,
             'image': self.uploaded_gif
         }
@@ -103,7 +104,7 @@ class PostFormTests(TestCase):
 
         self.assertTrue(
             Post.objects.filter(
-                text='Тестовый пост 1',).exists()
+                text='Тестовый пост 2',).exists()
         )
         self.assertEqual(Post.objects.count(), posts_count + 1)
 
@@ -114,6 +115,7 @@ class PostFormTests(TestCase):
             Post.objects.filter(text='Тестовый пост').exists()
         )
         form_data = {
+            'title': 'Заголовок',
             'text': 'Тестовый пост after the change',
             'group': self.group.id,
             'image': self.uploaded_gif,

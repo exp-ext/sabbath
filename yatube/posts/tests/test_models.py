@@ -20,7 +20,7 @@ class GroupModelTest(TestCase):
             str_text,
             str(group),
             f'У модели Group результат __str__ = "{str_text}" '
-            f'не соответствует ожидаемуму "{str(group)}"'
+            f'не соответствует ожидаемому "{str(group)}"'
         )
 
 
@@ -41,12 +41,12 @@ class PostModelTest(TestCase):
     def test_posts_have_correct_object_names(self):
         """Проверяем, что у модели корректно работает __str__."""
         post = self.post
-        str_text = post.text[:15]
+        str_text = post.title[:20]
         self.assertEqual(
             str_text,
             str(post),
             f'У модели Post результат __str__ = "{str_text}" '
-            f'не соответствует ожидаемуму "{str(post)}"'
+            f'не соответствует ожидаемому "{str(post)}"'
         )
 
     def test_field_description_name(self):

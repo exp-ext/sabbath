@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 import os
 import socket
 
+from core.keygen import get_key
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -27,10 +28,16 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 
+if not SECRET_KEY:
+    SECRET_KEY = get_key(50)
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = int(os.environ.get('DEBUG', default=0))
 
-ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
+ALLOWED_HOSTS = os.environ.get(
+    'DJANGO_ALLOWED_HOSTS',
+    default='localhost'
+).split(' ')
 
 # Application definition
 
@@ -142,22 +149,22 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = '/app/web/static'
+if DEBUG:
+    STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+else:
+    STATIC_ROOT = '/app/static/'
 
-# Без этой настройки статика не подключится
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
-
-# MEDIA
 MEDIA_URL = '/media/'
 
-UP_DIR = os.path.dirname(BASE_DIR)
-MEDIA_ROOT = f'{UP_DIR}/web/media' if DEBUG else '/app/web/media'
+if DEBUG:
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+else:
+    MEDIA_ROOT = '/app/media/'
 
 LOGIN_URL = 'users:login'
 LOGIN_REDIRECT_URL = 'posts:index'

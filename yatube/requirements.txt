@@ -12,11 +12,5 @@ pytils==0.4.1
 django-debug-toolbar==3.2.4
 python-dotenv==0.21.1
 django-phonenumber-field[phonenumbers]
-ipython
-flake8
-flake8-broken-line
-flake8-return
-flake8-isort
-
-gunicorn
-whitenoise
+gunicorn~=20.1.0
+whitenoise~=6.4.0
