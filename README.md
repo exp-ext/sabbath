@@ -1,6 +1,6 @@
 <h2>YaTube, cоциальная сеть для авторов и подписчиков (Яндекс Практикум)</h2>
 
-![статус](https://github.com/exp-ext/foodgram-project-react/actions/workflows/yatube_workflow.yml/badge.svg?event=push)
+![статус](https://github.com/exp-ext/yatube/actions/workflows/yatube_workflow.yml/badge.svg?event=push)
 
 <p align="center">
 <img src="https://www.affde.com/uploads/article/13525/J0ypLxCKzjX12HIF.jpg" width="1200">
